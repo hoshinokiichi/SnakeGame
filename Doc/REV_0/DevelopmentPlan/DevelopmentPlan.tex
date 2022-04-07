@@ -1,0 +1,126 @@
+\documentclass[11pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+\title{SFWRENG 3XA3: Development Plan}
+\author{Team L03G09 \\
+		Longwei Ye(yel16) \\
+		Qiang Gao(gaoq20) \\
+		Zhiwei Li(liz342) \\}
+\date{\today}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\begin{table}[hp]
+	\caption{Revision History} \label{TblRevisionHistory}
+	\begin{tabularx}{\textwidth}{llX}
+	\toprule
+	\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+	\midrule
+	2022/2/3 & Zhiwei Li & Provide Project Schedule\\
+	2022/2/3 & Longwei Ye & Add table for meeting plan\\
+	2022/2/3 & Qiang Gao & Add texts\\
+	\bottomrule
+	\end{tabularx}
+\end{table}
+	
+\section{Team Infos}
+\begin{itemize}
+	\item Team name: SE\_3XA3\_L03G09
+	\item Team member: Longwei Ye(yel16), Qiang Gao(gaoq20), Zhiwei Li(liz342)
+\end{itemize}
+\section{Team Meeting Plan}
+Regular meeting is scheduled at 10:00 p.m. every Thursday. Basic meeting time is 1.5 hours, 
+and additional time can be added for workload.
+
+\begin{table}[hp]
+	\caption{Meeting Shcedule}
+	\begin{tabularx}{\textwidth}{llX}
+	\toprule
+	\textbf{Date} & \textbf{Meeting Goal}\\
+	\midrule
+	2022/2/3 & Complete Development Plan\\
+	2022/2/10 & Complete Requirements Document\\
+	2022/2/17 & Setup Proof of Concept Demonstration and Project Revise\\
+	2022/2/24 & Complete Proof of Concept Demonstration\\
+	2022/3/3 & Setup Test Plan Ver. 1.0\\
+	2022/3/10 & Test Plan Revision 0 \& Revise Design \& Doc materials\\
+	2022/3/17 & Complete Design \& Document Revision 0\\
+	2022/3/27 & Review Revision 0 Demonstration \& setup further workloads\\
+	2022/3/31 & Prepare for Final Demonstration \& Complete Peer Evaluation\\
+	2022/4/7 & Final Demo Prepare \& Divide workloads for Final Documentation\\
+	2022/4/10 & Complete Final Demonstration\\
+	\bottomrule
+	\end{tabularx}
+\end{table}
+
+\section{Team Communication Plan}
+\begin{itemize}
+	\item Online chat before meeting for preparation 
+	(Clarify requirements, Marking scheme) via SMS applications such as WeChat or Discord.
+	\item Online meeting via Microsoft Team or in-person(preferable at campus) meeting at the scheduled time.
+	\item Documents early editions are developed through google doc.
+
+\end{itemize}
+
+\section{Team Member Roles}
+\begin{itemize}
+	\item Qiang Gao: Scriptor(records key decisions, insights, action items, and other results, summarizes the meeting)
+	\item Zhiwei Li: Facilitator(manages the meeting process)
+	\item Longwei Ye: Decision Maker(confirm and state the decision so it can be documented before the meeting ends)
+
+\end{itemize}
+
+\section{Git Workflow Plan}
+\begin{itemize}
+	\item Every team member will create a branch themselves, naming with their macids(e.g. Longwei Ye(yel16) is working on the project via branch “yel16”) and the decision of merging into the “main” branch will be discussed during the team meeting.
+	\item Every documentation will be tagged using the gitlab “tag” features, following the pattern”DocTitle-Rev.\#”, as “DocTitle” is the title of the document, and Rev.\# stands for the Reversion number for the documents.
+\end{itemize}
+
+\section{Proof of Concept Demonstration Plan}
+	\subsection {Risks:}
+		\begin{itemize}
+			\item ENew programming language learning(Javascript, Html, Css), familiar with the coding environment.
+			\item Understanding existing GUI and making some adjustments suitable with the current GUI design.
+			\item Testing environment for Javascript should be chosen carefully since we lack Javascript testing experience.
+		\end{itemize}
+	\subsection {How to overcome the risks:}
+		\begin{itemize}
+			\item Thorough tutorial for language learning is decided by group members after discussion, and a suitable learning schedule is developed with the project progress.
+			\item Based on the language learning experience and cooperate code reading, the GUI should be understandable and use version control to secure the appropriate modification.
+			\item Some testing frameworks like MochaJS can be chosen, with clear user guidance to develop the testing schema.
+		\end{itemize}
+
+\section{Technology}
+\begin{itemize}
+	\item Programming Language: Html, Css, JavaScript
+	\item IDE: VScode, Phpstorm
+	\item Version Control: Git, GitLab
+	\item Documentation Generator: Latex, Doxygen
+	\item Test Framework: MochaJS
+\end{itemize}
+
+\section{Coding Style}
+\begin{itemize}
+	\item All team members following the guideline when writing Html, Css, and Javascript codes:
+		\begin{itemize}
+			\item Html \& Css: \url{https://google.github.io/styleguide/htmlcssguide.html}
+			\item JavaScript: \url{https://google.github.io/styleguide/jsguide.html}
+		\end{itemize}
+	\item When naming local variables, all team members follow the naming pattern “variable\_name”.
+	\item All team members use the Doxygen style to add references at the start of each code-block in the project.
+\end{itemize}
+
+\section{Project Schedule}
+For details, please refer \href{run:./ProjectSchedule.pdf}{ProjectSchedule.pdf} at the same folder.
+
+\section{Project Review(for Revision 1)}
+Currently working on Revision 0, will be implemented at Revision 1 stage.
+
+\end{document}

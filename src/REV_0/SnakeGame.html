@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Snake Game</title>
+    <style type="text/css">
+        *{
+            margin:0px;
+            padding:0px;
+        }
+		body{
+            background-image: url("./Resources/Pictures/Background.png");
+        }
+        #gamebd{
+            width:1000px;
+            margin:50px auto;
+
+        }
+
+
+        #gameScense{
+            float:left;
+            background-image: url("./Resources/Pictures/StartGame.jpg");
+            background-size: cover;
+        }
+
+        #gameSet{
+            margin-left:10px;
+            float:left;
+        }
+
+        .gameBoxStyle{
+
+            margin-bottom:7px;
+            padding:5px 10px;
+        }
+
+        .gameBoxStyle h3{
+            margin-bottom:7px;
+        }
+        .gameBoxStyle p{
+            line-height: 1.7em;
+        }
+
+        .gameBoxStyle input{
+            margin-top:7px;
+            background-color: white;
+            border:1px gray solid;
+            padding:3px 9px;
+            margin-right:9px;
+        }
+        .gameBoxStyle input[type=text]{
+            width:90px;
+        }
+        .gameBoxStyle input:hover{
+            background-color: #e2fff2;
+        }
+
+        .gameBoxStyle #txtValue{
+            color:red;
+        }
+
+        .rules {
+            color: darkslategrey;
+            font-family: "DejaVu Sans Mono"
+        }
+        .title {
+            color: darkslategrey;
+            font-family: Copperplate, fantasy;
+            text-indent: 420px;
+            font-size: 40px;
+        }
+      
+        .gameBoxStyle input[id="snaColorR"]:hover {
+            background-color: red;
+        }
+        .gameBoxStyle input[id="snaColorG"]:hover {
+            background-color: green;
+        }
+        .gameBoxStyle input[id="snaColorB"]:hover {
+            background-color: blue;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+
+<!--BGM-->
+<audio id="bgm" src="./Resources/Music/ByeByeBrain.mp3" loop="loop"></audio>
+<a href="javascript:controlBGM();"><img src="./Resources/Music/play.svg" width="50" height="50" id="currentMusicButton"></a>
+
+<input type="range" id="sound" value="10" min="1" max="10" step="1" />&nbsp;Current volume:<span>10</span>
+<script src="./js/BgmContorl.js"></script>
+
+<br>
+<p class="title">Snake Game</p>
+<div id="gamebd">
+    <canvas id="gameScense" width="600" height="600">
+
+    </canvas>
+    <div id="gameSet">
+        <div id="gameControl" class="gameBoxStyle">
+            <h3>Game Control</h3>
+            <p>Keys:</p><p class="rules">Up, Down, Left, Right Arrow Keys</p>
+            <p>Start/Pause:</p><p class="rules">Space Bar</p>
+        </div>
+        <div id="gameStatus" class="gameBoxStyle">
+            <h3>Gaming Status</h3>
+            <p>User name：<input type="text" placeholder="User Name:" id="txtUserName" value="Player"/> </p>
+            <p>Current user score：<span id="txtValue">0</span></p>
+            <input type="button" value="Start game" id="btnStart"/>
+            <input type="button" value="Pause" id="btnPause"/>
+        </div>
+        <div id="game" class="gameBoxStyle">
+            <!--TODO: Game History-->
+            <h3>Records</h3>
+            <a href="javascript:displayHistory();">History</a>
+            <!--TODO-->
+        </div>
+        <!--Adding New Features: FR1-->
+        <div id="gameCustomized" class="gameBoxStyle">
+            <h3>Customize</h3>
+            <p>Snake Color:</p>
+            <input type="button" value="Red" id="snaColorR"/>
+            <input type="button" value="Green" id="snaColorG"/>
+            <input type="button" value="Blue" id="snaColorB"/>
+            <input type="button" value="Default" id="snaColorDefault"/>
+            <p>Your Own Color：<input type="text" placeholder="Color HEX:" id="txtSnakeColor" value="#"/><input type = "button" value = "Set" id="snakeColorSet"></p>
+        </div>
+    </div>
+</div>
+<script src="js/SnakeGame.js"></script>
+</body>
+
+<script src="./js/GameHistory.js"></script>
+<script src="js/GameControl.js"></script>
+<script src="js/SnakeColors.js"></script>
+<script src="js/CheckInputs.js"></script>
+</html>

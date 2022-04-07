@@ -1,0 +1,625 @@
+\documentclass[12pt, titlepage]{article}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{placeins}
+\usepackage{multirow}
+
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+      colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links (change box color with linkbordercolor)
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+
+\title{SE 3XA3: Module Internal Specification\\SnakeGame Project}
+
+\author{Team L03G09
+		\\ Qiang Gao  (gaoq20)
+		\\ Zhiwei Li  (liz342)
+		\\ Longwei Ye (yel16)
+}
+
+\date{\today}
+
+
+\begin{document}
+
+
+
+\maketitle
+
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Module Hierarchy}
+\begin{table}[h!]
+\centering
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+\toprule
+\textbf{Level 1} & \textbf{Level 2}\\
+\midrule
+
+{Hardware-Hiding Module} & ~ \\
+\midrule
+
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & View Module\\
+& BGM Control Module\\
+& Inputs Checking Module\\
+& Game Control Module\\
+\midrule
+
+\multirow{3}{0.3\textwidth}{Software Decision Module} & SnakeGame Module\\
+& History Module\\
+& Snake Color Module\\
+\bottomrule
+
+\end{tabular}
+\caption{\textbf{Module Hierarchy}}
+\label{TblMH}
+\end{table}
+\section{MIS of BGM Control Module}
+		\subsection{Interface Syntax}
+		\subsubsection{Exported Access Programs}
+		\begin{tabular}[pos]{|c|c|c|c|}
+			
+			\hline
+			%	\label
+			\textbf{Name}& \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\ \hline
+			BgmControl & - & - & -\\ \hline
+			SoundChange & - & - & -\\ \hline
+
+			
+		\end{tabular}
+		
+		\subsection{Interface Semantics}
+		\subsubsection{State Variables}
+	    music: object \\
+		currentButton: object \\
+		sound: object \\
+		span: object \\
+		music: object
+		\subsubsection{Environmental Variables}
+		N/A
+		\subsubsection{Assumptions}
+		Variables should be set before trying to access them
+		
+		\subsubsection{Access Program Semantics}
+		
+
+		BgmControl():
+		
+		Input: None
+		
+		Transition: The BGM will be paused or played by clicking the button.
+		
+		Output: None
+		
+		Exception: None\\ 
+		\\
+		SoundChange():
+		
+		Input: None
+		
+		Transition: The volume of BGM will be turned up or down by sliding the slider.
+		
+		Output: None
+		
+		Exception: None\\ 
+		\\
+		
+\section{MIS of Inputs Checking Module}
+	\subsection{Interface Syntax}
+		\subsubsection{Exported Access Programs}
+		
+	\begin{tabular}[pos]{|c|c|c|c|}
+	\hline
+	\textbf{Name}& \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\ 
+	\hline
+	checkColorHex & - & Boolean & -\\ 
+	\hline
+	checkUserName & - & Boolean & -\\ 
+	\hline
+	
+					
+	\end{tabular}		
+		
+	\subsection{Interface Semantics}
+		\subsubsection{State Variables}
+		color\_HEX: object
+		txtUserName: object
+		\subsubsection{Environmental Variables}
+		N/A
+		\subsubsection{Assumptions}
+Variables should be set before trying to access them
+
+		\subsubsection{Access Program Semantics}
+		
+		checkColorHex():
+		
+		Input: None\\
+		
+		Output: True if the length is valid, false if it is not.\\
+		
+		Exception: None\\
+		\\
+		checkUserName():
+		
+		Input: None\\
+		
+		Output: True if the length is valid, false if it is not.\\
+		
+		Exception: None\\
+		\\
+
+\section{MIS of Game Control Module}
+	\subsection{Interface Syntax}
+		\subsubsection{Exported Access Programs}
+		\begin{table}[!htbp]
+				\begin{tabular}{|c|c|c|c|}
+						\hline
+	\textbf{Name}& \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\ 
+	\hline
+					onCountChange & integer, String & - & Invalid Input \\ \hline
+					onGamePause & boolean & .mp4 & - \\ \hline
+					onGameOver & integer & - & - \\ \hline
+					btnStart.onclick & event & - & - \\ \hline
+					btnPasue.onclick & event & - & - \\ \hline
+					updateSnake & - & updateSnake & -\\ \hline
+				\end{tabular}
+			\end{table}
+	\subsection{Interface Semantics}
+		\subsubsection{State Variables}
+		btnStart: object
+		btnPasue: object
+		snaColor: object
+		gameHistory: String[]
+		gameSnake: SnakeGame
+		\subsubsection{Environmental Variables}
+		
+		N/A
+		
+		\subsubsection{Assumptions}
+		
+		All variables are set when the object is constructed.
+
+		\subsubsection{Access Program Semantics}
+
+	  onCountChange():
+		
+		Input: integer, Scores users got\\
+		
+		Transition: Scores changing when user playing the game\\
+		
+		Exception: None\\
+		\\
+	  onGamePause():
+		
+		Input: boolean, status\\
+		
+		Transition: play and pause the game\\
+		
+		Exception: None\\
+		\\
+	onGameOver():
+		
+		Input: integer, scores\\
+		
+		Transition: Display "game over" and scores\\
+		
+		Exception: None\\
+		\\
+		btnStart.onclick(event):
+		
+		Input: click\\
+		
+		Transition: start the game\\
+		
+		Exception: None\\
+		\\
+		btnPasue.onclick(event):
+		
+		Input: click\\
+		
+		Transition: pause the game\\
+		
+		Exception: None\\
+		\\
+		updateSnake():
+		
+		Input: None\\
+		
+		Transition: Update the status of game\\
+		
+		Output: updateSnake\\
+		
+		Exception: None\\
+		\\
+
+\section{MIS of SnakeGame Module}
+	\subsection{Interface Syntax}
+		\subsubsection{Exported Access Programs}
+	
+	\begin{tabular}[pos]{|c|c|c|c|}
+	\hline
+	\textbf{Name}& \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\ 
+	\hline
+	SnakeGame & object, object & SnakeGame & -\\ 
+	\hline
+	initSnake & - & - & -\\ 
+	\hline
+	initScense & - & - & - \\ 
+	\hline
+	genFood & - & - & -\\ 
+	\hline
+	genSpeeder & - & - & -\\ 
+	\hline
+	eatFood & object & boolean & -\\ 
+	\hline
+	eatSpeeder & object & boolean & -\\ 
+	\hline
+	gameOver & - & boolean & -\\ 
+	\hline
+	snakeMove & - & - & -\\ 
+	\hline
+	changeSpeed & - & - & -\\ 
+	\hline
+	handleKeyInput & object & - & -\\ 
+	\hline
+	initGame & - & - & -\\ 
+	\hline
+	triggerEvent & object,object & - & -\\ 
+	\hline
+	runGame & - & - & -\\ 
+	\hline
+	pauseGame & - & - & -\\ 
+	\hline
+	changeGameStatus & - & - & -\\ 
+	\hline
+	startGame & - & - & -\\ 
+	\hline
+	
+					
+	\end{tabular}			
+		
+	\subsection{Interface Semantics}
+		\subsubsection{State Variables}
+		gameScense: object\\
+		graphic: object\\
+		count: integer\\
+		itemCount: integer\\
+		itemvalid: boolean\\
+		snake: object\\
+		curFood: object\\
+		curSpeeder: object\\
+		runId: Integer\\
+		isMoved: boolean\\
+		gameStatus: boolean\\
+		curDirection: integer\\
+		size: integer\\
+		rowCount: integer\\
+		colCount: integer\\
+		snakeColor: object\\
+		foodColor: object\\
+		speederColor: object\\
+		scenseColor: object\\
+		directionKey: double\\
+		pauseKey: double\\
+		levelCount: integer\\
+		curSpeed: double\\
+		onCountChange: object\\
+		onGamePause: object\\
+		onGameOver: object
+		\subsubsection{Environmental Variables}
+		N/A
+		\subsubsection{Assumptions}
+		All variables are set when the object is constructed.
+		\subsubsection{Access Program Semantics}
+		SnakeGame(gameScenseId, gameConfigObj):
+		
+		Input: The id for the current game and combined variables used for a game
+		
+		Transition: None
+		
+		Output: Construct a SnakeGame
+		
+		Exception: None \\
+		\\
+		initSnake():
+		
+		Input: None
+		
+		Transition: store the initial position of a snake in game
+		
+		Exception: None\\
+		\\
+		initScense():
+		
+		Input: None
+		
+		Transition: print the initial background of the game
+				
+		Exception: None\\
+		\\
+		genFood():
+		
+		Input: None
+		
+		Transition: print a common food in a random position
+				
+		Exception: None\\
+		\\
+		genSpeeder():
+		
+		Input: None
+		
+		Transition: print a speeder in a random position
+				
+		Exception: None\\
+		\\
+		eatFood(snakeHead):
+		
+		Input: snakeHead, an object
+		
+		Output: True if a common food is eaten by the snake, false otherwise
+				
+		Exception: None\\
+		\\
+        eatSpeeder(snakeHead):
+		
+		Input: snakeHead, an object
+		
+		Output: True if a speeder is eaten by the snake, false otherwise
+				
+		Exception: None\\
+		\\
+		gameOver():
+		
+		Input: None
+		
+		Output: true if the game is ended, false otherwise
+				
+		Exception: None\\
+		\\
+		snakeMove():
+		
+		Input: None
+		
+		Transition: Take keyboard input to update one position shift, check 
+if any food or speeder is eaten, and if speed is needed to change.
+				
+		Exception: None\\
+		\\
+		changeSpeed():
+		
+		Input: None
+		
+		Transition: refresh speed based on current score. 
+				
+		Exception: None\\
+		\\
+		handleKeyInput(key):
+		
+		Input: key on keyboard, an object
+		
+		Transition: Change moving direction 
+based on key.
+				
+		Exception: None\\
+		\\
+		initGame():
+		
+		Input: None
+		
+		Transition: initialize the game
+				
+		Exception: None\\
+		\\
+		triggerEvent(callback,argument):
+		
+		Input: callback,argument
+		
+		Transition: template the end game, pause game events.
+				
+		Exception: None\\
+		\\
+		runGame():
+		
+		Input: None
+		
+		Transition: continue the game or end the game.
+				
+		Exception: None\\
+		\\
+		pauseGame():
+		
+		Input: None
+		
+		Transition: pause the game based on the trigger runId.
+				
+		Exception: None\\
+		\\
+		changeGameStatus():
+		
+		Input: None
+		
+		Transition: change the game status pause or continue, based on the trigger runId
+				
+		Exception: None\\
+		\\
+		startGame():
+		
+		Input: None
+		
+		Transition: do the initial part of the game, and set gameStatus
+				
+		Exception: None\\
+		\\
+
+\section{MIS of History Module}
+	\subsection{Interface Syntax}
+		\subsubsection{Exported Access Programs}
+		\begin{table}[!htbp]
+		\begin{tabular}{|c|c|c|c|}
+		\hline
+	\textbf{Name}& \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\ 
+	\hline
+			displayHistory & - & - & - \\ \hline
+			pushHistory & Integer & - & - \\ \hline
+		\end{tabular}
+	\end{table}
+		
+	\subsection{Interface Semantics}
+		\subsubsection{State Variables}
+		playerName: object\\
+		playerScore: Integer \\
+		toWrite: object \\
+		gameHistory: object
+		
+		\subsubsection{Environmental Variables}
+		N/A
+		\subsubsection{Assumptions}
+		All variables are set when the object is constructed. 
+
+		\subsubsection{Access Program Semantics}
+
+        displayHistory():
+
+		Input: None
+		
+		Transition: Display the history of the game.
+		
+		Output: None
+		
+		Exception - None\\
+		\\
+		pushHistory(count):
+		
+			Input: Scores user gets
+			
+			Transition: Record scores in gameHistory
+			
+			Output: None
+			 
+			Exception - None\\
+			\\
+
+
+	
+\section{MIS of Snake Colors Module}
+		\subsection{Interface Syntax}
+		\subsubsection{Exported Access Programs}
+		\begin{tabular}[pos]{|c|c|c|c|}
+			
+			\hline
+			%	\label
+			\textbf{Name}& \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\ \hline
+			snaColorR.onclick & event & - & -\\ \hline
+			snaColorG.onclick & event & - & -\\ \hline
+			snaColorB.onclick & event & - & -\\ \hline
+			snaColorDefault.onclick & event & - & -\\ \hline
+			snaColorSet.onclick & event & - & -\\ \hline
+		\end{tabular}
+		
+		\subsection{Interface Semantics}
+		\subsubsection{State Variables}
+		N/A
+		
+		\subsubsection{Environmental Variables}
+		N/A
+		
+		\subsubsection{Assumptions}
+		None
+		
+		\subsubsection{Access Program Semantics}
+		snaColorR.onclick():
+		
+		Input: event\\
+		
+		Transition: Red color\\
+		
+		Output: None\\
+		
+		Exception: None\\
+		\\
+		snaColorG.onclick():
+		
+		Input: event\\
+		
+		Transition: Green color\\
+		
+		Output: None\\
+		
+		Exception: None\\
+		\\
+		snaColorB.onclick():
+		
+		Input: event\\
+		
+		Transition: Blue color\\
+		
+		Output: None\\
+		
+		Exception: None\\
+		\\
+	    snaColorDefault.onclick():
+		
+		Input: event\\
+		
+		Transition: Default white color\\
+		
+		Output: None\\
+		
+		Exception: None\\
+		\\
+		snaColorSet.onclick():
+		
+		Input: event\\
+		
+		Transition: Change color pf snake\\
+		
+		Output: None\\
+		
+		Exception: None\\
+		\\
+	
+	
+\section{Side Notes}
+The MIS document consists of two files:
+\begin{itemize}
+	\item This MIS.pdf file
+	\item Automated generated document using open-source generator \emph{JSDoc}, with reference link: \url{https://jsdoc.app}. 
+	The generated html file is located at src/REV\_0/js/out folder. Please refer for details.
+\end{itemize}
+
+\section{Revision History}
+\begin{table}[bp]
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
+\midrule
+2022/3/15 & 1.0 & MIS for Snake Color Module\\
+2022/3/16 & 1.1 & MIS for BGM Control Module \& Game History Module\\
+2022/3/17 & 1.2 & MIS for Inputs Checking Module\\
+2022/3/18 & 1.3 & MIS for Game Control Module\\
+2022/3/18 & 1.4 & Revise for MIS document\\
+\bottomrule
+\end{tabularx}
+\caption{\bf Revision History}
+\end{table}
+
+			
+\end{document}
